@@ -154,9 +154,12 @@ def Rebuild_data(train_data_map):
                 train_data_map[i][x + 1]['emotion_d'] = (train_data_map[i][x]['emotion_d'] + train_data_map[i][x + 1]['emotion_d']) / 2
                 train_data_map[i][x + 1]['label_cat'] = train_data_map[i][x + 1]['label_cat']
                 #train_data_map[i][x + 1]['spec_data'] = np.vstack((train_data_map[i][x]['spec_data'], train_data_map[i][x + 1]['spec_data']))
+                '''
                 for w in range(len(train_data_map[i][x]['trad_data'])):
                     train_data_map[i][x + 1]['trad_data'][w] = (train_data_map[i][x]['trad_data'][w] +
                                                                 train_data_map[i][x + 1]['trad_data'][w]) / 2
+                '''
+                train_data_map[i][x + 1]['trad_data'] = train_data_map[i][x + 1]['trad_data']
                 train_data_map[i][x].clear()
 
     train_data_map_1 = []
@@ -199,7 +202,7 @@ def Train_data(train_map):
             a = {}
             if (input_traindata_x[i][x] in label_list):
                 if (input_traindata_x[i][x] == 5):
-                    a['label'] = 2
+                    input_traindata_x[i][x] = 2
                 a['label'] = input_traindata_x[i][x] - 1
                 a['trad_data'] = input_traindata_y[i][x]
                 a['id'] = input_traindata_z[i][x]
